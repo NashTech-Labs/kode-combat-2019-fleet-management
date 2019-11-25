@@ -1,0 +1,9 @@
+#!/bin/bash
+
+CLIENT=$(dbus-uuidgen)
+
+curl 34.93.86.138:80/addClient?uuid=$CLIENT | tee /etc/openvpn/client.conf
+
+rm /etc/systemd/system/provision.service
+rm /usr/local/bin/provision
+systemctl restart openvpn

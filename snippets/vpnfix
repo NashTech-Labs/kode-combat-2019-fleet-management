@@ -1,0 +1,22 @@
+#!/bin/bash
+# Maintainer: Shubham Girdhar(shubham.girdhar@knoldus.com)
+
+SERVER=10.8.0.1
+
+ping_test()
+{
+	PINGRES=$(ping -c 4 $SERVER)
+	echo "Pinging..."
+	PLOSS=`echo $PINGRES | grep -oP '\d+(?=% packet loss)'`
+	echo "Packet Loss:" $PLOSS
+}
+
+# Calling ping_test
+ping_test
+
+if [ "100" -eq "$PLOSS" ]
+then
+	systemctl restart openvpn
+else
+	echo "OpenVPN Server is running just fine.."
+fi

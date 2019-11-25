@@ -1,0 +1,17 @@
+---
+# Path Defaults
+vpn_server_conf_path: /etc/openvpn/server.conf
+
+# Service Specific Defaults
+service_name: service
+user: user
+group: group
+symlink_path: /home/{{ user }}
+
+# Conditionals
+vpn_conditional: not vpn_status.stat.exists
+
+# OpenVPN Script Defaults
+auto_install: y
+dns: 9
+

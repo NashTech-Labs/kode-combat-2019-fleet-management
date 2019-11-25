@@ -1,0 +1,6 @@
+---
+- hosts: combat
+  become: yes
+  become_method: sudo
+  roles:
+    - openvpn

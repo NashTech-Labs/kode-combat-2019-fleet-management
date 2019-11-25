@@ -1,0 +1,11 @@
+[Unit]
+Description=Metricbeat Daemon service
+
+[Service]
+ExecStart=metricbeat -e
+SuccessExitStatus=143
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

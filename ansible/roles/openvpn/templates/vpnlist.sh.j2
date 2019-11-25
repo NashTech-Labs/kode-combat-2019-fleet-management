@@ -1,0 +1,7 @@
+cat /var/log/openvpn/status.log | grep 10.8. | awk -F ',' '
+	BEGIN { 
+	    print "Device Name: IP Assigned"
+	}
+	{
+	    print $2": "$1
+	}' | sort

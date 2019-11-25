@@ -1,0 +1,26 @@
+---
+- name: Copying Script
+  template:
+    src: openvpn.sh.j2
+    dest: /usr/local/bin/vpnmanager
+    mode: '0755'
+
+- name: Checking if OpenVPN is already installed
+  stat:
+    path: '{{ vpn_server_conf_path }}'
+  register: vpn_status
+
+- name: Running Script to setup openvpn 
+  shell: /usr/local/bin/vpnmanager
+  args:
+    executable: /bin/bash
+  environment:
+    AUTO_INSTALL: "{{ auto_install }}"
+    DNS: "{{ dns }}"
+  when: '{{ vpn_conditional }}'
+
+- name: Copying vpn list script
+  template:
+    src: vpnlist.sh.j2
+    dest: /usr/local/bin/vpnlist
+    mode: '0755'

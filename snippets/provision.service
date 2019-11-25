@@ -1,0 +1,13 @@
+[Unit]
+Description=VPNProvision
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/provision
+USER=root
+GROUP=root
+
+[Install]
+WantedBy=default.target
+
+
